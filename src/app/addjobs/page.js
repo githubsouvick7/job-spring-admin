@@ -95,6 +95,7 @@ const initialValues = {
   exprience: "",
   skills: [""],
   batch: [""],
+  image: "",
   link: "",
   mailId: "",
 };
@@ -103,30 +104,15 @@ const JobForm = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedBatch, setSelectedBatch] = useState([]);
   const [cities, setCities] = useState(null);
+
   const handleSubmit = async (values) => {
     values.location.city = cities.label.city;
     values.location.state = cities.label.state;
     values.skills = selectedItems;
     values.batch = selectedBatch;
 
-    // console.log("Job Data Submitted: ", values);
-
-    // try {
-    //   const response = await fetch(`http://localhost:1234/jobs`, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(values),
-    //   });
-
-    //   const data = await response.json();
-    //   setState("all-jobs");
-    // } catch (error) {
-    //   console.log(error);
-    // }
     try {
-      const data = await fetcher("/jobs", "POST", values);
+      // const data = await fetcher("/jobs", "POST", values);
     } catch (error) {
       console.error("Error submitting job:", error);
     }
@@ -192,6 +178,22 @@ const JobForm = () => {
                     </Label>
                     <ComboboxDemo setData={setCities} />
                   </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <Label className="w-40 block text-sm font-medium text-gray-700">
+                    Company logo
+                  </Label>
+                  <Input
+                    placeholder="Enter company logo"
+                    type="text"
+                    {...getFieldProps("image")}
+                  />
+                  <ErrorMessage
+                    name="image"
+                    component="p"
+                    className="text-red-500 text-sm"
+                  />
                 </div>
 
                 <FieldArray name="points">

@@ -1,32 +1,8 @@
 import axios from "axios";
 
 // Base URL Setup
-const BASE_URL = "http://localhost:1234";
-// const BASE_URL = "https://lionfish-app-msisk.ondigitalocean.app";
-
-// export const fetcher = async (
-//   endpoint,
-//   method = "GET",
-//   data = null,
-//   headers = {}
-// ) => {
-//   try {
-//     const url = `${BASE_URL}${endpoint}`;
-
-//     const config = {
-//       method,
-//       url,
-//       headers,
-//       ...(data && { data }),
-//     };
-
-//     const response = await axios(config);
-//     return response.data;
-//   } catch (error) {
-//     console.error("API Call Error:", error);
-//     throw error.response?.data || error.message;
-//   }
-// };
+// const BASE_URL = "http://localhost:1234";
+const BASE_URL = "https://lionfish-app-msisk.ondigitalocean.app";
 
 export const fetcher = async (
   endpoint,
