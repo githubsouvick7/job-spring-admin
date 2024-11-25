@@ -16,6 +16,7 @@ const JobFilter = () => {
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState("");
 
   const fetchJobs = async () => {
     setLoading(true);
@@ -46,12 +47,19 @@ const JobFilter = () => {
   }, []);
 
   const handleChange = (e) => {
-    console.log(e.target.value);
+    setSearch(e.target.value);
   };
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("submitted");
+    try {
+      const response = await fetcher(`/jobs?permalink=${search}`);
+      setJobs(response?.job);
+    } catch (e) {
+      console.log(e);
+    }
   };
+
+  console.log(jobs);
 
   return (
     <div className="relative min-h-screen">
